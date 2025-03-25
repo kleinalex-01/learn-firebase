@@ -74,6 +74,16 @@ section {
     gap: 2em;
 }
 
+.sign-out {
+    position: absolute;
+    text-align: center;
+    
+    top: 1em;
+    right: 1em;
+    font-weight: 300;
+    font-size: 1em;
+}
+
 /* === Common for elements === */
 
 input, button {
