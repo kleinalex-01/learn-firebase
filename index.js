@@ -6,7 +6,8 @@ import { getAuth,
          signInWithEmailAndPassword,
          signOut,
          onAuthStateChanged,
-         GoogleAuthProvider } from "firebase/auth";
+         GoogleAuthProvider, 
+         signInWithPopup} from "firebase/auth";
 
 /* === Firebase Setup === */
 const firebaseConfig = {
@@ -66,7 +67,17 @@ const clearInputFields = () => {
 
 /* = Functions - Firebase - Authentication = */
 function authSignInWithGoogle() {
-
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+    }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+    })
 }
 
 function authSignInWithEmail() {
